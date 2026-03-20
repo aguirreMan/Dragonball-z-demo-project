@@ -1,17 +1,24 @@
+import { useState } from 'react'
 import { Outlet } from 'react-router-dom'
+import Header from './Header'
+import type { RaceOption } from '@/types/types'
+import type { LayoutContext } from '@/types/types'
+
 
 export default function Layout() {
-  return (
-     <div className="min-h-screen bg-black">
-       <header className="w-full bg-black border-b-4 border-orange-500 px-8 py-4">
-         <h2 className="dbz-heading text-5xl uppercase tracking-widest">
-           Dragon Ball Z
-         </h2>
-       </header>
+  const [selectedRace, setSelectedRace] = useState('')
+  const [raceOptions, setRaceOptions] = useState<RaceOption[]>([])
 
-       <main className="p-8">
-         <Outlet />
-       </main>
-     </div>
-   )
+  return (
+    <div className="min-h-screen bg-black">
+      <Header
+        selectedRace={selectedRace}
+        setSelectedRace={setSelectedRace}
+        raceOptions={raceOptions}
+      />
+      <main className="p-8">
+        <Outlet context={{ selectedRace, setSelectedRace, setRaceOptions } as LayoutContext} />
+      </main>
+    </div>
+  )
 }
