@@ -1,23 +1,23 @@
 import { useState } from 'react'
-import { Outlet } from 'react-router-dom'
+import { Outlet, useLocation } from 'react-router-dom'
 import Header from './Header'
-import type { RaceOption } from '@/types/types'
-import type { LayoutContext } from '@/types/types'
+import type { FilterOption, LayoutContext } from '@/types/types'
 
 
 export default function Layout() {
-  const [selectedRace, setSelectedRace] = useState('')
-  const [raceOptions, setRaceOptions] = useState<RaceOption[]>([])
+  const [selectedFilter, setSelectedFilter] = useState('')
+  const [filterOptions, setFilterOptions] = useState<FilterOption[]>([])
+  const { pathname } = useLocation()
 
   return (
     <div className="min-h-screen bg-black">
       <Header
-        selectedRace={selectedRace}
-        setSelectedRace={setSelectedRace}
-        raceOptions={raceOptions}
+        selectedRace={selectedFilter}
+        setSelectedRace={setSelectedFilter}
+        raceOptions={filterOptions}
       />
-      <main className="p-8">
-        <Outlet context={{ selectedRace, setSelectedRace, setRaceOptions } as LayoutContext} />
+      <main key={pathname} className="p-8">
+        <Outlet context={{ selectedFilter, setSelectedFilter, setFilterOptions } as LayoutContext} />
       </main>
     </div>
   )

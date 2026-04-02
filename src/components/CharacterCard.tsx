@@ -1,8 +1,10 @@
 import { Card, CardHeader, CardTitle, CardContent, CardDescription } from './ui/card'
 import type { Character } from '@/types/types'
+import { Link } from 'react-router-dom'
 
 export default function CharacterCard({ character }: { character: Character }) {
   return (
+    <Link to={`/character/${character.id}`}>
     <Card className="group bg-gray-950 border border-orange-500/40 hover:border-orange-400 hover:shadow-[0_0_20px_rgba(255,140,0,0.35)] transition-all duration-300 overflow-hidden">
       <div className="relative overflow-hidden bg-gradient-to-b from-gray-900 to-gray-950 h-48 flex items-end justify-center">
         <img
@@ -54,6 +56,7 @@ export default function CharacterCard({ character }: { character: Character }) {
       </CardContent>
 
       <div className="h-0.5 bg-gradient-to-r from-transparent via-orange-500 to-transparent opacity-40 group-hover:opacity-90 transition-opacity" />
-    </Card>
+      </Card>
+    </Link>
   )
 }

@@ -9,13 +9,13 @@ export interface Character {
   image: string
 }
 
-export interface RaceOption {
+export interface FilterOption {
   value: string
   label: string
 }
 
 export interface LayoutContext {
-  selectedRace: string
-  setSelectedRace: (race: string) => void
-  setRaceOptions: (options: RaceOption[]) => void
+  selectedFilter: string
+  setSelectedFilter: (value: string) => void
+  setFilterOptions: (options: FilterOption[]) => void
 }
