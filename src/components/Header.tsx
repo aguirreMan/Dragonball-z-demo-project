@@ -1,5 +1,7 @@
 import { Link, NavLink } from 'react-router-dom'
 import CharacterSelect from './CharacterSelect'
+import type { FilterOption } from '@/types/types'
+
 
 const navLinks = [
   { to: '/', label: 'Characters' },
@@ -7,15 +9,11 @@ const navLinks = [
   { to: '/transformations', label: 'Transformations' },
 ]
 
-interface RaceOption {
-  value: string
-  label: string
-}
 
 interface HeaderProps {
   selectedRace: string
   setSelectedRace: (race: string) => void
-  raceOptions: RaceOption[]
+  raceOptions: FilterOption[]
 }
 
 export default function Header({ selectedRace, setSelectedRace, raceOptions }: HeaderProps) {
