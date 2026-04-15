@@ -3,10 +3,21 @@ import type { Character } from '@/types/types'
 import { Link } from 'react-router-dom'
 
 export default function CharacterCard({ character }: { character: Character }) {
+  function getKiPowerLevels(ki: string, maxKi: string) {
+    const kiPercentage = parseFloat(ki) / parseFloat(maxKi)
+    return kiPercentage
+  }
+
+  function formatKi(ki: string, maxKi: string) {
+    const kiPercentage = getKiPowerLevels(ki, maxKi)
+    return `${(kiPercentage * 100).toFixed(0)}%`
+  }
+
+
   return (
     <Link to={`/character/${character.id}`}>
     <Card className="group bg-gray-950 border border-orange-500/40 hover:border-orange-400 hover:shadow-[0_0_20px_rgba(255,140,0,0.35)] transition-all duration-300 overflow-hidden">
-      <div className="relative overflow-hidden bg-gradient-to-b from-gray-900 to-gray-950 h-48 flex items-end justify-center">
+      <div className="relative overflow-hidden bg-linear-to-b from-gray-900 to-gray-950 h-48 flex items-end justify-center">
         <img
           src={character.image}
           alt={character.name}
@@ -40,14 +51,14 @@ export default function CharacterCard({ character }: { character: Character }) {
         <div className="space-y-1">
           <div className="flex justify-between text-[10px] uppercase tracking-widest text-orange-400/80">
             <span>Power Level</span>
-            <span className="font-mono text-orange-300">{character.ki}</span>
+            <span className="font-mono text-orange-300">{formatKi(character.ki, character.ki)}</span>
           </div>
           <div className="h-1.5 w-full rounded-full bg-gray-800 overflow-hidden">
-            <div className="h-full w-[70%] rounded-full bg-gradient-to-r from-orange-600 via-yellow-400 to-yellow-200" />
+            <div className="h-full w-[70%] rounded-full bg-linear-to-r from-orange-600 via-yellow-400 to-yellow-200" />
           </div>
           <div className="flex justify-between text-[10px] text-gray-500">
             <span>MAX</span>
-            <span className="font-mono">{character.maxKi}</span>
+            <span className="font-mono">{formatKi(character.ki, character.maxKi)}</span>
           </div>
         </div>
         <CardDescription className="text-xs text-gray-400 line-clamp-3 border-t border-orange-500/10 pt-2">
@@ -55,7 +66,7 @@ export default function CharacterCard({ character }: { character: Character }) {
         </CardDescription>
       </CardContent>
 
-      <div className="h-0.5 bg-gradient-to-r from-transparent via-orange-500 to-transparent opacity-40 group-hover:opacity-90 transition-opacity" />
+      <div className="h-0.5 bg-linear-to-r from-transparent via-orange-500 to-transparent opacity-40 group-hover:opacity-90 transition-opacity" />
       </Card>
     </Link>
   )
