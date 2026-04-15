@@ -9,6 +9,7 @@ function parseKi(ki: string) {
 function kiBarWidth(ki: string, maxKi: string) {
   return `${((parseKi(ki) / parseKi(maxKi)) * 100).toFixed(0)}%`
 }
+console.log('CharacterPage is rendering')
 
 export default function CharacterPage() {
   const { id } = useParams<{ id: string }>()
@@ -44,7 +45,7 @@ export default function CharacterPage() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {/* Image panel */}
-            <div className="relative bg-linear-to-b from-gray-900 to-gray-950 border border-orange-500/40 rounded-lg overflow-hidden flex items-end justify-center h-[420px] shadow-[0_0_40px_rgba(255,140,0,0.12)]">
+            <div className="relative bg-linear-to-b from-gray-900 to-gray-950 border border-orange-500/40 rounded-lg overflow-hidden flex items-end justify-center h-105 shadow-[0_0_40px_rgba(255,140,0,0.12)]">
               <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom,rgba(255,140,0,0.1)_0%,transparent_65%)]" />
               <img
                 src={character.image}
